@@ -19,4 +19,6 @@ module com.haulmont.demos.jlink {
 
     requires jdk.jlink;
     requires jandex;
+
+    provides jdk.tools.jlink.plugin.Plugin with com.haulmont.demos.jlink.AddIndexPlugin;
 }
