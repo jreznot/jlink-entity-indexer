@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+}
+
+group 'com.haulmont.demos'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.10
+
+compileJava {
+    doFirst {
+        options.compilerArgs = [
+                '--add-exports', "jdk.jlink/jdk.tools.jlink.plugin=UNNAMED"
+        ]
+    }
+}
+
+jar {
+    manifest {
+        attributes(
+                'Premain-Class': 'com.haulmont.demos.jlink.JLinkPluginRegistrationAgent'
+        )
+    }
+}

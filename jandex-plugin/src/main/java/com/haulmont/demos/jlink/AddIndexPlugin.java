@@ -37,7 +37,6 @@ public class AddIndexPlugin implements Plugin {
     private List<String> modules;
 
     @Override
-
     public String getName() {
         return NAME;
     }
