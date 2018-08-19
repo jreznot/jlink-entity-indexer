@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group 'com.haulmont.demos'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.10
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Jandex is a space efficient Java annotation indexer and offline reflection library
+    compile('org.jboss:jandex:2.0.4.Final')
+}
+
+// Compile module with Gradle
+
+def moduleName = 'com.haulmont.demos.jlink'
+
+compileJava {
+    inputs.property("moduleName", moduleName)
+    doFirst {
+        options.compilerArgs = [
+                '--module-path', classpath.asPath,
+                '--add-exports', "jdk.jlink/jdk.tools.jlink.plugin=com.haulmont.demos.jlink"
+        ]
+        classpath = files()
+    }
+}
